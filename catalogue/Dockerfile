@@ -1,8 +1,8 @@
 FROM node:20
 
 WORKDIR /opt/serever
-COPY package.json /opt/server
-COPY *.js /opt/serever
+COPY package.json .
+COPY *.js .
 
 RUN npm install
 
