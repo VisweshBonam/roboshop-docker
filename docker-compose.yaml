@@ -64,6 +64,8 @@ services:
       - cart
       - shipping
       - payment
+    ports:
+      - "80:80"
   
 
     
