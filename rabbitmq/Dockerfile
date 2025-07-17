@@ -1,3 +1,3 @@
-FROM rabbitmq:3.0
+FROM rabbitmq:3.13
 ENV RABBITMQ_DEFAULT_USER=roboshop
 ENV RABBITMQ_DEFAULT_PASS=roboshop123
