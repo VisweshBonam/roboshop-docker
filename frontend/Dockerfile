@@ -15,4 +15,4 @@ ENV CART_HOST=cart \
     SHIPPING_HOST=shipping \
     SHIPPING_PORT: 8080 \
     PAYMENT_HOST=payment \
-    PAYMENT_PORT: 8080 \
+    PAYMENT_PORT: 8080 
