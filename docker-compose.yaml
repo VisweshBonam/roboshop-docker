@@ -3,10 +3,10 @@ networks:
     name: roboshop
     driver: bridge
 volumes:
-  mongodb
-  mysql
-  redis
-  rabbitmq
+  mongodb:
+  mysql:
+  redis:
+  rabbitmq:
 
 services:
   mongodb:
