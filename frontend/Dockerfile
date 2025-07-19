@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:1.28.0-alpine
 EXPOSE 80
 RUN rm -rf /usr/share/nginx/html/index.html
 RUN rm -rf /etc/nginx/nginx.conf
