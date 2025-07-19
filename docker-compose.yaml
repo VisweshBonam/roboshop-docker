@@ -13,7 +13,7 @@ services:
     image: visweshbonam/mongodb:v1
     container_name: mongodb
     volumes:
-    - mongodb: /data/db
+    - mongodb:/data/db
 
   catalogue:
     image: visweshbonam/catalogue:v1
@@ -25,7 +25,7 @@ services:
     image: redis:7.0
     container_name: redis
     volumes:
-    - redis: /data
+    - redis:/data
   
   user:
     image: visweshbonam/user:v1
@@ -46,7 +46,7 @@ services:
     image: visweshbonam/mysql:v1
     container_name: mysql
     volumes:
-    - mysql: /var/lib/mysql
+    - mysql:/var/lib/mysql
     
   shipping:
     image: visweshbonam/shipping:v1
@@ -59,7 +59,7 @@ services:
     image: visweshbonam/rabbitmq:v1
     container_name: rabbitmq
     volumes:
-    - rabbitmq: /var/lib/rabbitmq
+    - rabbitmq:/var/lib/rabbitmq
   
   payment:
     image: visweshbonam/payment:v1
