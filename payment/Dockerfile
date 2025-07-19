@@ -1,4 +1,4 @@
-FROM python:3-alpine3.21
+FROM python:3
 WORKDIR /opt/server/
 COPY payment.ini .
 COPY *.py .
