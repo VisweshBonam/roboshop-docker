@@ -2,10 +2,18 @@ networks:
   default:
     name: roboshop
     driver: bridge
+volumes:
+  mongodb
+  mysql
+  redis
+  rabbitmq
+
 services:
   mongodb:
     image: visweshbonam/mongodb:v1
     container_name: mongodb
+    volumes:
+    - mongodb: /data/db
 
   catalogue:
     image: visweshbonam/catalogue:v1
@@ -16,6 +24,8 @@ services:
   redis:
     image: redis:7.0
     container_name: redis
+    volumes:
+    - redis: /data
   
   user:
     image: visweshbonam/user:v1
@@ -35,6 +45,8 @@ services:
   mysql:
     image: visweshbonam/mysql:v1
     container_name: mysql
+    volumes:
+    - mysql: /var/lib/mysql
     
   shipping:
     image: visweshbonam/shipping:v1
@@ -46,6 +58,8 @@ services:
   rabbitmq:
     image: visweshbonam/rabbitmq:v1
     container_name: rabbitmq
+    volumes:
+    - rabbitmq: /var/lib/rabbitmq
   
   payment:
     image: visweshbonam/payment:v1
