@@ -21,7 +21,7 @@ RUN apk add --no-cache prce
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 USER roboshop
 
-COPY --from=builder /opt/server /opt/server
+COPY --from=builder /install /usr/local
 COPY --chown=roboshop:roboshop payment.ini .
 COPY --chown=roboshop:roboshop *.py .
 
