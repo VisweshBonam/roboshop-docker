@@ -12,7 +12,7 @@ RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 WORKDIR /opt/server
 COPY --from=builder /opt/server /opt/server
 
-chmod -R roboshop roboshop
+RUN chown -R roboshop:roboshop /opt/server
 USER roboshop
 CMD ["node" , "server.js"]
 
