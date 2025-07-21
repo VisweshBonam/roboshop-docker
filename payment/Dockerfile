@@ -1,14 +1,14 @@
 FROM python:3.9.23-alpine3.22 AS builder
-WORKDIR /opt/server
-COPY payment.ini .
-COPY *.py .
+WORKDIR /build
+
+# Install build dependencies
+RUN apk add --no-cache python3-dev build-base linux-headers pcre-dev
 COPY requirements.txt .
-RUN apk add --no-cache --virtual .build-deps \
-        gcc musl-dev python3-dev libffi-dev linux-headers && \
-    pip3 install --no-cache-dir -r requirements.txt && \
-    apk del .build-deps
+RUN pip3 install --no-cache-dir --prefix=/install -r requirements.txt
 
 FROM python:3.9.23-alpine3.22
+EXPOSE 8080
+WORKDIR /opt/server
 ENV CART_HOST="cart" \
     CART_PORT="8080" \
     USER_HOST="user" \
@@ -17,16 +17,17 @@ ENV CART_HOST="cart" \
     AMQP_USER="roboshop" \
     AMQP_PASS="roboshop123"
 
-WORKDIR /opt/server
+RUN apk add --no-cache prce
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
-
-RUN apk add --no-cache libstdc++ libffi
-COPY --from=builder /opt/server /opt/server
-RUN chown -R roboshop:roboshop /opt/server
 USER roboshop
+
+COPY --from=builder /opt/server /opt/server
+COPY --chown=roboshop:roboshop payment.ini .
+COPY --chown=roboshop:roboshop *.py .
+
 CMD ["uwsgi", "--ini", "payment.ini"]
 
-# FROM python:3.9
+# FROM python:3.9.23-alpine3.22
 # WORKDIR /opt/server/
 # COPY payment.ini .
 # COPY *.py .
