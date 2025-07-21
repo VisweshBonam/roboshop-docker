@@ -5,8 +5,8 @@ COPY *.js .
 RUN npm install
 
 FROM node:20-alpine3.21
-ENV MONGO="true" 
-ENV MONGO_URL="mongodb://mongodb:27017/catalogue"
+ENV MONGO="true" \
+    MONGO_URL="mongodb://mongodb:27017/catalogue"
 
 WORKDIR /opt/server
 COPY --from=builder /opt/server /opt/server
