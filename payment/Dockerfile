@@ -19,9 +19,10 @@ ENV CART_HOST="cart" \
 
 WORKDIR /opt/server
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
-RUN chown -R roboshop:roboshop /opt/server
+
 RUN apk add --no-cache libstdc++ libffi
 COPY --from=builder /opt/server /opt/server
+RUN chown -R roboshop:roboshop /opt/server
 USER roboshop
 CMD ["uwsgi", "--ini", "payment.ini"]
 
