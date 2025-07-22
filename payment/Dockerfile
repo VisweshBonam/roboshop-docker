@@ -28,7 +28,7 @@
 # CMD ["uwsgi", "--ini", "payment.ini"]
 
 
-FROM python:3.9.23-alpine3.22
+FROM python:3.9
 ENV CART_HOST="cart" \
     CART_PORT="8080" \
     USER_HOST="user" \
