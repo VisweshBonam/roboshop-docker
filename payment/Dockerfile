@@ -37,7 +37,7 @@ ENV CART_HOST="cart" \
     AMQP_USER="roboshop" \
     AMQP_PASS="roboshop123"
 WORKDIR /opt/server/
-RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
+RUN useradd roboshop
 COPY payment.ini .
 COPY *.py .
 COPY requirements.txt .
